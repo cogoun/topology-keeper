@@ -1,0 +1,42 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 1
+      author: cogoun
+      changes:
+        - createTable:
+            tableName: environment
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+        - createTable:
+            tableName: virtual_machine
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: host_name
+                  type: varchar(50)
+              - column:
+                  name: environment_id
+                  type: int
+  - changeSet:
+      id: 2
+      author: gkountak
+      changes:
+        - createSequence:
+            incrementBy: 1
+            minValue: 10
+            sequenceName: hibernate_sequence
+

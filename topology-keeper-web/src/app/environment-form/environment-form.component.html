@@ -1,0 +1,21 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #environmentForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"/>
+      </div>
+      <button type="button" class="btn btn-default" (click)="newEnvironment();environmentForm.reset()">New Environment</button>
+      <button type="submit" class="btn btn-success" [disabled]="!environmentForm.form.valid">Submit</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ model.name }}</div>
+    </div>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    <button class="btn btn-primary" (click)="navigateToEnvironments()">Environments</button>
+  </div>
+</div>
